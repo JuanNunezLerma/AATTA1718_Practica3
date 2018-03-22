@@ -68,7 +68,11 @@ public class ObtenerDatos {
         - El quinto octeto es el campo LC, es la longitud del campo de datos.
         - Los siguientes campos son los datos.
         */
+        //En este caso el tercer octeto es 0x04(Selección directa de DF(fichero dedicado) por nombre)
         byte[] command = new byte[]{(byte) 0x00, (byte) 0xa4, (byte) 0x04, (byte) 0x00, (byte) 0x0b, (byte) 0x4D, (byte) 0x61, (byte) 0x73, (byte) 0x74, (byte) 0x65, (byte) 0x72, (byte) 0x2E, (byte) 0x46, (byte) 0x69, (byte) 0x6C, (byte) 0x65};
+       // DATOS: 4D 61 73 74 65 72 2E 46 69 6C 65(hexadecimal)->ASCII----->Master.File
+        //En este caso accedemos al fichero Master.File (un comando de selección por nombre del fichero maestro )
+        //LC=0x0b
         ResponseAPDU r = ch.transmit(new CommandAPDU(command));
         if ((byte) r.getSW() != (byte) 0x9000) {
             System.out.println("ACCESO DNIe: SW incorrecto");
@@ -76,7 +80,23 @@ public class ObtenerDatos {
         }
 
         //[2] PRÃ�CTICA 3. Punto 1.a
+        /*Comando SELECT, este comando permite la seleccion de fichero dedicado a (DF) o de un fichero elemental (EF). Esto lo podemos saber
+        ya que en el siguiente array de byte presenta la misma estructura que su especificacion:
+        - El primer octeto 0x00 es el campo CLA
+        - El segundo octeto 0xA4 es el campo INS
+        - El tercero octeto puede ser 0x00(Selecciona DF o EF por Id) o 0x04(Seleccion directa de DF por nombre) es el campo P1.
+        - El cuarto octeto es 0x00 es el campo P2.
+        - El quinto octeto es el campo LC, es la longitud del campo de datos.
+        - Los siguientes campos son los datos.
+        */
+      //En este caso P1= 0x00(Selecciona DF o EF por Id)
+      //LC=0x02
+      //DATOS:50 15--->DECIMAL->80  
+      //Los dos últimos valores hacen referencia al ID del fichero elemental 
+      //P1=0x00 para poder seleccionar por ID. 
+        
         command = new byte[]{(byte) 0x00, (byte) 0xA4, (byte) 0x00, (byte) 0x00, (byte) 0x02, (byte) 0x50, (byte) 0x15};
+        
         r = ch.transmit(new CommandAPDU(command));
 
         if ((byte) r.getSW() != (byte) 0x9000) {
@@ -85,6 +105,20 @@ public class ObtenerDatos {
         }
 
         //[3] PRÃ�CTICA 3. Punto 1.a
+        /*Comando SELECT, este comando permite la seleccion de fichero dedicado a (DF) o de un fichero elemental (EF). Esto lo podemos saber
+        ya que en el siguiente array de byte presenta la misma estructura que su especificacion:
+        - El primer octeto 0x00 es el campo CLA
+        - El segundo octeto 0xA4 es el campo INS
+        - El tercero octeto puede ser 0x00(Selecciona DF o EF por Id) o 0x04(Seleccion directa de DF por nombre) es el campo P1.
+        - El cuarto octeto es 0x00 es el campo P2.
+        - El quinto octeto es el campo LC, es la longitud del campo de datos.
+        - Los siguientes campos son los datos.
+        */
+      //En este caso P1= 0x00(Selecciona DF o EF por Id)
+      //LC=0x02
+      //DATOS:60 04--->DECIMAL->96  
+      //Los dos últimos valores hacen referencia al ID del fichero elemental 
+      //P1=0x00 para poder seleccionar por ID. 
         command = new byte[]{(byte) 0x00, (byte) 0xA4, (byte) 0x00, (byte) 0x00, (byte) 0x02, (byte) 0x60, (byte) 0x04};
         r = ch.transmit(new CommandAPDU(command));
 
