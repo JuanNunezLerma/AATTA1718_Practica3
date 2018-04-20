@@ -314,9 +314,9 @@ public class ObtenerDatos {
         System.out.println(apellido2);
         System.out.println("Nombre:" + nombre);
         
-      //Creamos el objeto usuario y guardamos en el los atributos obtenidos
-        Usuario user=new Usuario(nombre,apellido1,apellido2,nif);
-        JOptionPane.showMessageDialog(null, "Bienvenido: "+ nombre + apellido1 + " " + apellido2);
-        return user;        
+       //Creamos el objeto usuario y guardamos en el los atributos obtenidos
+       Usuario user=new Usuario(nombre,apellido1,apellido2,nif);
+       JOptionPane.showMessageDialog(null, "Bienvenido: "+ nombre + " " + apellido1 + " " + apellido2);
+       return user;        
     }
 }
