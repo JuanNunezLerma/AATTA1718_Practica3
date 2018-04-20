@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.smartcardio.*;
+import javax.swing.JOptionPane;
 
 /**
  * La clase ObtenerDatos implementa cuatro mÃ©todos pÃºblicos que permiten obtener
@@ -144,7 +145,7 @@ public class ObtenerDatos {
             command = new byte[]{CLA, INS, (byte) bloque/*P1*/, (byte) 0x00/*P2*/, LE};//Identificar quÃ© hacen P1 y P2
             r = ch.transmit(new CommandAPDU(command));
 
-            //System.out.println("ACCESO DNIe: Response SW1=" + String.format("%X", r.getSW1()) + " SW2=" + String.format("%X", r.getSW2()));
+            System.out.println("ACCESO DNIe: Response SW1=" + String.format("%X", r.getSW1()) + " SW2=" + String.format("%X", r.getSW2()));
 
             if ((byte) r.getSW() == (byte) 0x9000) {
                 r2 = r.getData();
@@ -248,6 +249,74 @@ public class ObtenerDatos {
      * @return 
      */
     private Usuario leerDatosUsuario(byte[] datos) {
-       return null;
+    	//Atributos que debemos obtener
+        //Deben de estar inicializados para poder crear el objeto usuario
+        String nombre = "";
+        String apellido1 = "";
+        String apellido2 = "";
+        String nif = "";
+        byte[] nifbyte = new byte[1];
+        byte[] apellidobyte = new byte[1];
+        byte[] nombrebyte = new byte[1];
+        
+        System.out.println("DNIe:");
+        
+        int oid=6;
+        int oidApn=85;
+        int oidApn2=4;
+        int oidApn3=3;
+        int tamDni=9;
+        int set=49;
+        int posicion=0;
+        int i, j=0;
+        
+        for (i=0; i<datos.length; i++) {
+        	if(datos[i]==oid && datos[i+6]==tamDni) { // Buscamos la posicion que coincide el OID y que justo 6 posiciones despues aparezca el tamaño del DNI que es 9.
+        		//nos posicionamos en la posicion de inicio del dni y lo concatenamos.
+        		for(j=i+7; j<i+7+tamDni; j++) {
+	        		nifbyte[0] = datos[j]; //Extraemos el byte
+	                nif = nif +  new String(nifbyte);//Lo convertimos a Sring y lo concatemos
+        		}
+        		i=datos.length;
+        	} 	
+        }
+        
+        for (i=0; i<datos.length; i++) {
+        	if(datos[i]==set && datos[i+6]==85 && datos[i+7]==4 && datos[i+8]==3) { //Buscamos el set, 
+        		System.out.println("Encuentra los datos");
+        		posicion=i+11; //Guardamos la posicion
+        		for(j=posicion; datos[j]!=32; j++) { //Recorremos los datos para extraer el primer apellido hasta que encuentre un espacio en blanco(32)
+        			//System.out.println("Entra al for apellido1");
+        			apellidobyte[0] = datos[j];
+        			apellido1 = apellido1 + new String (apellidobyte);
+        		}
+        		posicion=j+1; //Actualizamos la posicion para seguir con el segundo apellido
+        		
+        		for(j=posicion; datos[j]!=44; j++) { // Recorremos los datos para extraer el segundo apellido hasta que encuentre una coma (44)
+        			//System.out.println("Entra al for apellido 2");
+        			apellidobyte[0] = datos[j];
+        			apellido2 = apellido2 + new String (apellidobyte);
+        		}
+        		posicion=j+2; //Actualizamos la posicion para seguir con el nombre
+        		
+        		for(j=posicion; datos[j]!=40; j++) { // Recorremos los datos para extraer el nombre hasta que encuentre un parentesis (40)
+        			//System.out.println("Entra al for nombre");
+        			nombrebyte[0] = datos[j];
+        			nombre = nombre + new String (nombrebyte);
+        		}
+        		posicion=j; //Actualizamos la posicion donde ha acabado
+        		i=datos.length; //Condicion de finalización del bucle for (ya que se ha terminado de leer)
+        	}
+        	
+        }
+        System.out.println("DNIe:" + nif);
+        System.out.println("Apellidos:" + apellido1);
+        System.out.println(apellido2);
+        System.out.println("Nombre:" + nombre);
+        
+      //Creamos el objeto usuario y guardamos en el los atributos obtenidos
+        Usuario user=new Usuario(nombre,apellido1,apellido2,nif);
+        JOptionPane.showMessageDialog(null, "Bienvenido: "+ nombre + apellido1 + " " + apellido2);
+        return user;        
     }
 }

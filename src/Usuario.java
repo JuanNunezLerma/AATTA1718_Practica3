@@ -15,6 +15,10 @@ public class Usuario {
         nif=ni;
     }
     
+    public Usuario() {
+    	
+    }
+    
     @Override
     public String toString(){
         return nombre+" "+apellido1+" "+apellido2+" "+nif;
