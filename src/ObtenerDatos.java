@@ -262,9 +262,6 @@ public class ObtenerDatos {
         System.out.println("DNIe:");
         
         int oid=6;
-        int oidApn=85;
-        int oidApn2=4;
-        int oidApn3=3;
         int tamDni=9;
         int set=49;
         int posicion=0;
@@ -282,7 +279,7 @@ public class ObtenerDatos {
         }
         
         for (i=0; i<datos.length; i++) {
-        	if(datos[i]==set && datos[i+6]==85 && datos[i+7]==4 && datos[i+8]==3) { //Buscamos el set, 
+        	if(datos[i]==set && datos[i+6]==85 && datos[i+7]==4 && datos[i+8]==3) { //Buscamos posicion donde empieza el primer apellido 
         		System.out.println("Encuentra los datos");
         		posicion=i+11; //Guardamos la posicion
         		for(j=posicion; datos[j]!=32; j++) { //Recorremos los datos para extraer el primer apellido hasta que encuentre un espacio en blanco(32)
