@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.swing.JOptionPane;
+
 
 /**
  * Aplicaciones Telemáticas para la Administración
@@ -49,6 +51,18 @@ public class Main {
         post.add("user", nick);
         post.add("pass", dni);
         String respuesta = post.getRespueta();
+        String respuestaOK = "200 OK";
+        String respuestaBad = "400 BAD REQUEST";
+        
+        if (respuesta.contains(respuestaBad)==true) { //si recibe un 400, mostramos mensaje de usuario incorrecto.
+        	JOptionPane.showMessageDialog(null, "Usuario y contrase�a incorrectos. Debe de solicitar su acceso.");
+        }
+        else if (respuesta.contains(respuestaOK)==true) { //si recibe un 200, mostramos mensaje de OK.
+        	JOptionPane.showMessageDialog(null, "Login correcto.");
+        }
+        else {
+        	JOptionPane.showMessageDialog(null, "Error de acceso");
+        }
         System.out.println(respuesta);
         
     }
