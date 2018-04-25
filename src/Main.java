@@ -63,7 +63,6 @@ public class Main {
         else {
         	JOptionPane.showMessageDialog(null, "Error de acceso");
         }
-        System.out.println(respuesta);
-        
+        System.out.println(respuesta);      
     }
 }
