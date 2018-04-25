@@ -10,9 +10,6 @@ import java.io.InputStream;
 
 /**
  * Aplicaciones Telemáticas para la Administración
- * 
- * Este programa debe ller el nombre y NIF de un usuario del DNIe, formar el identificador de usuario y autenticarse con un servidor remoto a través de HTTP 
- * @author Juan Carlos Cuevas Martínez
  */
 import java.io.BufferedReader;
 import java.io.IOException;
