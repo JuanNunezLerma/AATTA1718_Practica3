@@ -8,11 +8,13 @@ import javax.smartcardio.*;
 import javax.swing.JOptionPane;
 
 /**
- * La clase ObtenerDatos implementa cuatro mÃ©todos pÃºblicos que permiten obtener
+ * La clase ObtenerDatos implementa cuatro metodos publicos que permiten obtener
  * determinados datos de los certificados de tarjetas DNIe, Izenpe y Ona.
  *
- * @author tbc
+ * @author Juan Núñez Lerma / Fernando Cabrera Caballero
+ * @version 1.0
  */
+
 public class ObtenerDatos {
 
     private static final byte[] dnie_v_1_0_Atr = {
@@ -27,6 +29,10 @@ public class ObtenerDatos {
     public ObtenerDatos() {
     }
 
+    /**
+    Funcion para acceder y leer el DNI.
+    @return user: Clase usuario con los datos extraidos y en el formato de la clase.
+    */
     public Usuario LeerNIF() { // Metodo para acceder y leer el DNI.
 
         Usuario user = null; // Clase usuario para guardas los datos del DNI.
@@ -241,12 +247,12 @@ public class ObtenerDatos {
     }
 
     /**
-     * Analizar los datos leÃ­dos del DNIe para obtener
+     * Funcion que analiza los datos leidos del DNIe y obtiene:
      *   - nombre
      *   - apellidos
      *   - NIF
-     * @param datos
-     * @return 
+     * @param datos: datos que se reciben.
+     * @return user: datos extraidos y empaquetados en una clase llamada Usuario.
      */
     private Usuario leerDatosUsuario(byte[] datos) {
     	//Atributos que debemos obtener

@@ -1,3 +1,11 @@
+/**
+ * 
+ * Clase para realizar la peticion post
+ * @author Juan Núñez Lerma / Fernando Cabrera Caballero
+ * @version 1.0
+ */
+
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
@@ -6,10 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-
 /**
- * Aplicaciones TelemÃ¡ticas para la AdministraciÃ³n
+
  */
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,11 +34,20 @@ public class PeticionPost {
 	private URL url;
 	String data;
 
+    /**
+    Constructor.
+    @param url: Direccion donde se va a realizar la peticion
+    */
 	public PeticionPost (String url) throws MalformedURLException{
 		this.url = new URL(url);
 		data="";
 	}
 
+	 /**
+    Funcion para añadir los datos que se envian.
+    @param propiedad: nombre para identificar el dato que se ha enviado.
+    @param valor: valor del datos que se ha enviado.
+    */
 	public void add (String propiedad, String valor) throws UnsupportedEncodingException{
 		//codificamos cada uno de los valores
 		if (data.length()>0)
@@ -41,6 +56,10 @@ public class PeticionPost {
 		data+= URLEncoder.encode(propiedad, "UTF-8")+ "=" +URLEncoder.encode(valor, "UTF-8");
 	}
 
+	/**
+    Funcion para recibir la respuesta del servidor.
+    @return respuesta: respuesta que es generada por el servidor y enviada al cliente.
+    */
 	public String getRespueta() throws IOException {
 		String respuesta = "";
 		//abrimos la conexion

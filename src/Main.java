@@ -10,19 +10,26 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Aplicaciones Telemáticas para la Administración
+ * Aplicaciones Telematicas para la Administracion
  * 
- * Este programa debe leer el nombre y NIF de un usuario del DNIe, formar el identificador de usuario y autenticarse con un servidor remoto a través de HTTP 
- * @author Juan Carlos Cuevas Martínez
+ * Este programa debe leer el nombre y NIF de un usuario del DNIe, formar el identificador de usuario y autenticarse con un servidor remoto a traves de HTTP 
+ * @author Juan N��ez Lerma / Fernando Cabrera Caballero
+ * @version 1.0
  */
+
 public class Main {
     /**
      * @param args the command line arguments
      */
+	
+	/**
+    Funcion principal del programa:
+    Obtiene los datos, realiza la peticion post al servidor y recibe respuesta.
+    */
     public static void main(String[] args) throws Exception{
         ByteArrayInputStream bais=null;
         
-        //TAREA 2. Conseguir que el método LeerNIF de ObtenerDatos devuelva el 
+        //TAREA 2. Conseguir que el metodo LeerNIF de ObtenerDatos devuelva el 
         //         correctamente los datos de usuario 
         ObtenerDatos od = new ObtenerDatos();
         Usuario user = od.LeerNIF();
