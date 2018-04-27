@@ -43,33 +43,43 @@ public class Main {
         String usuario;
         String nick, dni;
         
-        usuario=user.getNombre();
-        n=usuario.charAt(0);
-        
-        ap1=user.getApellido1();
-        
-        usuario=user.getApellido2();
-        ap2=usuario.charAt(0);
-        
-        nick=n+ap1+ap2;
-        dni=user.getNif();
-        
-        PeticionPost post = new PeticionPost ("http://localhost:8081/p3/autentication");
-        post.add("user", nick);
-        post.add("pass", dni);
-        String respuesta = post.getRespueta();
-        String respuestaOK = "200 OK";
-        String respuestaBad = "400 BAD REQUEST";
-        
-        if (respuesta.contains(respuestaBad)==true) { //si recibe un 400, mostramos mensaje de usuario incorrecto.
-        	JOptionPane.showMessageDialog(null, "Usuario y contraseña incorrectos. Debe de solicitar su acceso.");
+        try {
+	        usuario=user.getNombre();
+	        n=usuario.charAt(0);
+	        
+	        ap1=user.getApellido1();
+	        
+	        usuario=user.getApellido2();
+	        ap2=usuario.charAt(0);
+	        
+	        nick=n+ap1+ap2;
+	        dni=user.getNif();
+	        try {
+		        PeticionPost post = new PeticionPost ("http://localhost:8081/p3/autentication");
+		        post.add("user", nick);
+		        post.add("pass", dni);
+		        String respuesta = post.getRespueta();
+		        String respuestaOK = "200 OK";
+		        String respuestaBad = "400 BAD REQUEST";
+		        
+		        if (respuesta.contains(respuestaBad)==true) { //si recibe un 400, mostramos mensaje de usuario incorrecto.
+		        	JOptionPane.showMessageDialog(null, "Usuario y contraseña incorrectos. Debe de solicitar su acceso.");
+		        }
+		        else if (respuesta.contains(respuestaOK)==true) { //si recibe un 200, mostramos mensaje de OK.
+		        	JOptionPane.showMessageDialog(null, "Login correcto.");
+		        }
+		        else {
+		        	JOptionPane.showMessageDialog(null, "Error de acceso");
+		        }
+		        System.out.println(respuesta); 
+	        }catch(IOException e) { //Excepcion, por ejemplo, si no está arrancada la BBDD
+	        	 System.out.println("Exception catched: " + e.getMessage());
+	        	 JOptionPane.showMessageDialog(null, "Error en el sistema");
+	        }  
         }
-        else if (respuesta.contains(respuestaOK)==true) { //si recibe un 200, mostramos mensaje de OK.
-        	JOptionPane.showMessageDialog(null, "Login correcto.");
+        catch(Exception e) { //Excepcion por si no se pueden leer DNI o si no se ha introducido DNI en el lector.
+        	System.out.println("Exception catched: " + e.getMessage());
+        	JOptionPane.showMessageDialog(null, "No ha sido posible leer los datos");
         }
-        else {
-        	JOptionPane.showMessageDialog(null, "Error de acceso");
-        }
-        System.out.println(respuesta);      
     }
 }

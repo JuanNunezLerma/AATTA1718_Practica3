@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		
+		<title>Aplicaciones Telemáticas para la Administración</title>
+	    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<h1 id="title">Práctica 3</h1>
+							<p> Implementación de un servicio básico de autenticación con DNIe</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">DNIe</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Servicio </span></a></li>
+								<li><a href="#cliente" id="cliente-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Cliente </span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Autores</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							<header>
+								<h2 class="alt">¿Qué es el <strong>DNIe</strong>?<br />
+								</h2>
+								<p>DNIe es el documento de identidad electrónico que se expide en España desde marzo de 2006. Se trata de la evolución del anterior
+								Documento Nacional de Identidad (DNI) pensada para adaptar su uso a la sociedad de la información y para que sus portadores puedan darle uso 
+								para determinados servicios electrónicos.
+								<p>Este DNIe tiene asociada una clave que únicamente el propietario del DNIe conoce, mediante esta clave, el DNIe y un lector de DNI se podrá  acceder a los servicios que a continución exponemos</p>
+								</p>
+					
+					
+							</header>
+
+							<footer>
+								<a href="https://www.dnielectronico.es/PortalDNIe/" class="button scrolly" target="Ventana-2">Portal sede electrónica DNIe</a>
+								<img src="https://inza.files.wordpress.com/2010/06/logo_dnie_1024_768.jpg " width="220 "height="140" align="right">
+							<br>
+							</footer>
+
+						</div>
+						</section>
+						<section id="top" class="one dark cover">
+						<div class="container">
+
+							<header>
+								<h2 class="alt">Utilización del <strong>DNIe</strong><br />
+								</h2>
+								<p>Tal y como recoge la Declaración de Prácticas de Certificación del DNI, el DNIe podrá utilizarse:
+								<br><br><li><strong>Como medio de Autenticación de la Identidad.</strong></li>
+								El Certificado de Autenticación (Digital Signature) asegura al titular, en la comunicación electrónica, acreditar su identidad frente a cualquiera.
+								<br><br><li><strong>Como medio de firma electrónica de documentos.</strong></li>
+								Mediante la utilización del Certificado de Firma (non Repudition), el receptor de un mensaje firmado electrónicamente puede verificar la autenticidad de esa firma, pudiendo de esta forma demostrar la identidad del firmante sin que éste pueda repudiarlo.
+								<br><br><li><strong>Como medio de certificación de Integridad de un documento.</strong></li>
+								Permite comprobar que el documento no ha sido modificado por ningún agente externo a la comunicación.
+								<br><br><li><strong>Como Documento de Viaje. El sistema ABC System</strong></li>
+								El DNI 3.0 tiene una estructura de datos equivalente al pasaporte. En este sentido, el DNI 3.0 puede realizar funciones de Documento de Viaje en los paises que lo acepten como tal,	y se permite su uso en los Pasos Rápidos de Frontera (ABC Systems) de forma totalmente equivalente a un pasaporte.
+								
+								</p>
+					
+					
+							</header>
+
+							<footer>
+								<img src="https://www.dnielectronico.es/img/anversosoporte_3.png" width="400 "height="230" align="left">
+								<img src="https://cdn3.computerhoy.com/sites/computerhoy.com/files/styles/fullcontent/public/novedades/dni_elecronico_3_asi_es_asi_funciona_0.jpg?itok=ZwpI1RyM " width="300 "height="220" align="right">
+							</footer>
+
+						</div>
+						
+						
+					</section>
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+
+							<header>
+								<h2><strong>Servicio</strong></h2>
+							</header>
+						<div>	
+						
+						<div class="container">
+						<p>En este servicio contamos con 2 aplicaciones una <a href ="#cliente">cliente</a> y otra servidor. 
+						<br>El servidor se encarga de comprobar si los datos recibidos por parte del cliente se encuentran almacenados en BBDD y envía a este una respuesta en función de la comprobación
+						<br>La aplicación cliente se encarga de obtener los datos personales del usuario, concretamente del nombre, apellidos y dni, y se encarga de en función del nombre y apellidos sacar un nombre de usuario. Estos datos se van a leer a traves del lector  a través de un lector de DNI.
+						<br>La aplicación cliente envía el nombre de usuario y el dni al servidor, recibe por parte de este una respuesta y procesa esta respuesta mostrando un mensaje al usuario.
+						<br>A continuación explicamos con detalle el uso de la aplicación cliente.
+						</p>
+						</div>
+					
+					<div class="container">
+					<h2><strong><a name="cliente">Aplicación Cliente</a></strong></h2>
+					<br>El usuario debe de seguir los siguientes pasos para poder usar la aplicación.
+					<br>
+					<strong>1. Requisitos previos: </strong>
+					<p>El usuario debe disponer previamente de un Ordenador PC, un lector de tarjetas inteligentes, DNIe y de una conexión a Internet.
+					<br>En cuanto al software necesario se requiere de un entorno de desarrollo (Eclipse, Netbeans...), un conjunto de servidor y aplicaciones (WAMP, XAMP...), una base de datos (puede encontrarse en phpmyAdmin, mysql...) y tener instalado Apache Tomcat. 
+					</p>
+					
+					<p><strong>2. Iniciar servidor WAMP y añadir BBDD  </strong>
+					<br>El usuario debe añadir a BBDD el archivo sql que se encuentra en el repositorio de github (usuarios_bbdd.sql) 
+					
+					<div align="center"><img src="img/bbdd.PNG"></div>
+					</p>
+					<p><strong>3. Ejecutar aplicación servidor   </strong>
+					<br>Para este paso será necesario abrir el entorno de desarrollo y ejecutar la aplicación servidora. Ésta nos mostrará un jsp en el cual se podrá comprobar los usuarios que hay en la BBDD, pero esta no es competencia de la práctica.
+					</p>
+					<div align="center"><img src="img/server.PNG"></div>
+					<p><strong>4. Introducir el lector de DNI en el PC   </strong>
+					</p>
+					<div align="center"><img src="img/LECTOR DNI BLANCO.png"></div>
+					
+					<p><strong>5. Ejecutar aplicación cliente   </strong>
+					<br>Volvemos a abrir el entorno de desarrollo y ejecutamos la aplicación cliente. La aplicación lee los datos del DNIe a través del lector y nos muestra por pantalla los datos del usuario.
+					<br>Muestra mensaje de bienvenida.
+					</p>
+					<div align="center"><img src="img/cliente.PNG"></div>
+					<div align="center"><img src="img/Mensaje Bienvenida.PNG"></div>
+					<div align="left"><img src="img/RespuestaServer OK.PNG"></div>
+					<p><strong>6. Aparece por pantalla el mensaje   </strong>
+					<br>El servidor manda la respuesta en función de los datos enviados por el cliente.
+					
+					</p>
+					<div align="center"><img src="img/MensajeLogin OK.PNG"></div>
+					
+					
+					</div>	
+					</section>
+
+			
+		
+				<!-- Contact -->
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Alumnos</h2>
+							</header>
+
+							<p>Juan Núñez Lerma</p>
+							<p>Fernando Cabrera Caballero</p>
+
+							
+
+						</div>
+					</section>
+
+			</div>
+
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
