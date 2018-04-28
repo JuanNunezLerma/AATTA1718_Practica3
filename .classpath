@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="bcprov-jdk16-144.jar"/>
 	<classpathentry kind="lib" path="jasn1-1.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juan_/Downloads/Telegram Desktop/Controlador-Java-DNIe.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

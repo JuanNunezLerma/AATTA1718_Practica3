@@ -115,8 +115,8 @@
 						<div class="container">
 						<p>En este servicio contamos con 2 aplicaciones una <a href ="#cliente">cliente</a> y otra servidor. 
 						<br>El servidor se encarga de comprobar si los datos recibidos por parte del cliente se encuentran almacenados en BBDD y envía a este una respuesta en función de la comprobación
-						<br>La aplicación cliente se encarga de obtener los datos personales del usuario, concretamente del nombre, apellidos y dni, y se encarga de en función del nombre y apellidos sacar un nombre de usuario. Estos datos se van a leer a traves del lector  a través de un lector de DNI.
-						<br>La aplicación cliente envía el nombre de usuario y el dni al servidor, recibe por parte de este una respuesta y procesa esta respuesta mostrando un mensaje al usuario.
+						<br>La aplicación cliente se encarga de obtener los datos personales del usuario, concretamente, el nombre, apellidos y DNI, y se encarga de realizar, en función del nombre y apellidos, obtener un nombre de usuario o nick. Estos datos se van a leer a traves de un lector de DNI.
+						<br>La aplicación cliente envía el nombre de usuario y el DNI al servidor, y recibe por parte de este una respuesta y procesa esta respuesta mostrando un mensaje al usuario.
 						<br>A continuación explicamos con detalle el uso de la aplicación cliente.
 						</p>
 						</div>
@@ -127,34 +127,65 @@
 					<br>
 					<strong>1. Requisitos previos: </strong>
 					<p>El usuario debe disponer previamente de un Ordenador PC, un lector de tarjetas inteligentes, DNIe y de una conexión a Internet.
-					<br>En cuanto al software necesario se requiere de un entorno de desarrollo (Eclipse, Netbeans...), un conjunto de servidor y aplicaciones (WAMP, XAMP...), una base de datos (puede encontrarse en phpmyAdmin, mysql...) y tener instalado Apache Tomcat. 
+					<br>En cuanto al software necesario se requiere de un entorno de desarrollo (Eclipse, Netbeans...), un conjunto de servidor y aplicaciones (WAMP, XAMP...), una base de datos (puede encontrarse en phpmyAdmin, mysql...) y  tener instalado Apache Tomcat. 
+					
 					</p>
 					
-					<p><strong>2. Iniciar servidor WAMP y añadir BBDD  </strong>
+					<i><font size=3>*Los siguientes dos pasos (pasos 2 y 3), son obligatorios para la prueba de la práctica, ya que no se dispone de un servidor alojado en ningún sitio que proporcione los servicios.
+					Si se quisiera implantar el servicio en la realidad, estos pasos no serían necesarios ya que se dispondría del acceso al servidor, simplificando el proceso simplemente a ejecutar el archivo .jar.</font></i>
+					<br></br>
+					<p><strong>2. Iniciar servidor WAMP y añadir BBDD.  </strong>
 					<br>El usuario debe añadir a BBDD el archivo sql que se encuentra en el repositorio de github (usuarios_bbdd.sql) 
 					
 					<div align="center"><img src="img/bbdd.PNG"></div>
 					</p>
-					<p><strong>3. Ejecutar aplicación servidor   </strong>
-					<br>Para este paso será necesario abrir el entorno de desarrollo y ejecutar la aplicación servidora. Ésta nos mostrará un jsp en el cual se podrá comprobar los usuarios que hay en la BBDD, pero esta no es competencia de la práctica.
+					<p><strong>3. Ejecutar aplicación servidor .  </strong>
+					<br>Para este paso será necesario abrir el entorno de desarrollo y ejecutar la aplicación servidora (Run as). En el servidor se encuentra implementado un Servlet para mostrar los usaurios que se encuentran registrados en la BBDD. 
+					<br><div align="center"><img src="img/server.PNG"></div>
+					<br>Una vez ejecutado el servidor, en el navegador ponemos la siguiente url http://localhost:8080/p3/ y aparecerá el siguiente jsp:
+					<div align="center"><img src="img/home.PNG"></div>
+					<br>En este jsp introducimos el nombre de usuario y el DNI, en el caso de que se encuentren en la BBDD mostrará el siguiente jsp con los usuarios que se encuentran almacenados
+					en BBDD.
+					<div align="center"><img src="img/usuarios.PNG"></div>
 					</p>
-					<div align="center"><img src="img/server.PNG"></div>
-					<p><strong>4. Introducir el lector de DNI en el PC   </strong>
-					</p>
+					
+					<p><strong>4. Introducir DNI en el lector de tarjetas inteligentes. </strong>
+					<br>El usuario debe conectar el lector al PC.
 					<div align="center"><img src="img/LECTOR DNI BLANCO.png"></div>
-					
-					<p><strong>5. Ejecutar aplicación cliente   </strong>
-					<br>Volvemos a abrir el entorno de desarrollo y ejecutamos la aplicación cliente. La aplicación lee los datos del DNIe a través del lector y nos muestra por pantalla los datos del usuario.
-					<br>Muestra mensaje de bienvenida.
 					</p>
+					
+					
+					<p><strong>5. Ejecutar aplicación cliente .  </strong>
+					<br>Para abrir la aplicación solo es necesario ejecutar el archivo .jar adjuntado, llamado AccesoDNIe.jar.
+					<div align="center"><img src="img/ejecutable.PNG"></div>
+					
+					<br>En el caso de que el usuario disponga de acceso a un entorno de desarrollo , tambien se puede ejecutar la aplicación cliente desde aquí.
 					<div align="center"><img src="img/cliente.PNG"></div>
-					<div align="center"><img src="img/Mensaje Bienvenida.PNG"></div>
-					<div align="left"><img src="img/RespuestaServer OK.PNG"></div>
-					<p><strong>6. Aparece por pantalla el mensaje   </strong>
-					<br>El servidor manda la respuesta en función de los datos enviados por el cliente.
 					
+					La aplicación lee los datos del DNIe a través del lector y muestra por pantalla los datos del usuario.
+				
+					<br>
+					<br>Una vez realizado cualquiera de los pasos anteriormente mencionados, aparece el mensaje de bienvenida.
+					<div><div align="center"><img src="img/Mensaje Bienvenida.PNG"></div>
+					<br>En el caso de que ocurra algún error en la lectura del DNI, aparece el siguiente mensaje.
+					<div align="center"><img src="img/Error lectura.PNG"></div>
+					<p>En el caso de haber ejecutado la aplicación en el entorno de desarrollo, aparece la información extraída del usuario por consola.
+					<div align="center"><img src="img/RespuestaServer OK.PNG"></div></p>
 					</p>
+					
+					
+					
+					<p><strong>6. Aparece por pantalla la respuesta por parte del servidor.   </strong>
+					<br>El servidor manda la respuesta en función de los datos enviados por el cliente. El usuario no tiene que realizar ningún tipo de acción, la dos aplicaciones se encargan de 
+					realizar esta acción.
+					<br>Al usuario le aparecen distintos mensajes en función de:
+					
+					</p>Usuario y DNI se encuentran en BBDD
 					<div align="center"><img src="img/MensajeLogin OK.PNG"></div>
+					<br>Usuario y DNI no se encuentran en BBDD
+					<div align="center"><img src="img/Usuario no registrado en BBDD.PNG"></div>
+					<br>Error en el sistema
+					<div align="center"><img src="img/Error BBDD.PNG"></div>
 					
 					
 					</div>	

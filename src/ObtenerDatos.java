@@ -1,11 +1,19 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.Provider;
+import java.security.Security;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.smartcardio.*;
 import javax.swing.JOptionPane;
+import es.gob.jmulticard.jse.provider.DnieProvider;
 
 /**
  * La clase ObtenerDatos implementa cuatro metodos publicos que permiten obtener
@@ -253,8 +261,9 @@ public class ObtenerDatos {
      *   - NIF
      * @param datos: datos que se reciben.
      * @return user: datos extraidos y empaquetados en una clase llamada Usuario.
+     * @throws KeyStoreException 
      */
-    private Usuario leerDatosUsuario(byte[] datos) {
+    private Usuario leerDatosUsuario(byte[] datos) throws KeyStoreException {
     	//Atributos que debemos obtener
         //Deben de estar inicializados para poder crear el objeto usuario
         String nombre = "";
@@ -310,8 +319,27 @@ public class ObtenerDatos {
         		posicion=j; //Actualizamos la posicion donde ha acabado
         		i=datos.length; //Condicion de finalización del bucle for (ya que se ha terminado de leer)
         	}
-        	
-        }
+        }        
+     // Se instancia el proveedor y se anade
+        final Provider p = new DnieProvider();
+        Security.addProvider(p);
+        // Se obtiene el almacen y se carga
+        final KeyStore ks = KeyStore.getInstance("DNI"); //$NON-NLS-1$
+        try {
+			ks.load(null, null);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   //     Certificate authCert = ks.getCertificate("CertAutenticacion");
+    //    Certificate authCertFirm = ks.getCertificate("CertFirmaDigital");
+        
         System.out.println("DNIe:" + nif);
         System.out.println("Apellidos:" + apellido1);
         System.out.println(apellido2);
